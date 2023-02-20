@@ -14,3 +14,8 @@ after_success:
   - docker build -t ivan/multi-nginx ./nginx
   - docker build -t ivan/multi-server ./server
   - docker build -t ivan/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push ivan/multi-client
+  - docker push ivan/multi-nginx
+  - docker push ivan/multi-server
+  - docker push ivan/multi-worker
